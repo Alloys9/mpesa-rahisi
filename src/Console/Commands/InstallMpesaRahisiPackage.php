@@ -72,7 +72,17 @@ class InstallMpesaRahisiPackage extends Command
     protected function replaceCsrfMiddleware()
     {
         $this->info('Replacing CSRF middleware...');
-        $this->replaceFile(base_path('vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php'), __DIR__ . '/../../vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php');
+
+        $targetFile = base_path('vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.ph');
+        $sourceFile = __DIR__ . '/../../vendor/VerifyCsrfToken.php';
+
+        if (!$this->files->exists($targetFile)) {
+            $this->info("Creating $targetFile as it does not exist...");
+            $this->files->ensureDirectoryExists(dirname($targetFile));
+            $this->files->put($targetFile, $this->files->get($sourceFile));
+        } else {
+            $this->replaceFile($targetFile, $sourceFile);
+        }
     }
 
     protected function copyDirectory($src, $dest)

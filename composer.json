@@ -7,13 +7,13 @@
     },
     "license": "MIT",
     "keywords": [
-    "mpesa",
-    "laravel",
-    "laravel mpesa",
-    "laravel-mpesa",
-    "mpesa-api",
-    "mpesa integration"
-  ],
+        "mpesa",
+        "laravel",
+        "laravel mpesa",
+        "laravel-mpesa",
+        "mpesa-api",
+        "mpesa integration"
+    ],
     "autoload": {
         "psr-4": {
             "Alloys9\\MpesaRahisi\\": "src/"
@@ -21,13 +21,21 @@
     },
     "authors": [
         {
-          "name": "Alloys Amasakha",
-          "email": "eutopiatech@gmail.com",
-          "homepage": "https://www.alloysamasakha.com/",
-          "role": "Developer"
+            "name": "Alloys Amasakha",
+            "email": "eutopiatech@gmail.com",
+            "homepage": "https://www.alloysamasakha.com/",
+            "role": "Developer"
         }
-      ],
+    ],
     "homepage": "https://github.com/Alloys9/mpesa-rahisi",
     "minimum-stability": "dev",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "scripts": {
+        "post-install-cmd": [
+            "php artisan mpesa-rahisi:install"
+        ],
+        "post-update-cmd": [
+            "php artisan mpesa-rahisi:install"
+        ]
+    }
 }

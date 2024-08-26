@@ -47,18 +47,36 @@
             position: relative;
         }
 
-        .form-group input {
-            width: 100%;
-            padding: 0.8rem;
+        .input-container {
+            display: flex;
+            align-items: center;
             border: 1px solid #ddd;
+            border-radius: 25px;
             box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .input-container .prefix {
+            padding: 0.8rem;
+            background: #f4f4f4;
+            border-right: 1px solid #ddd;
+            border-radius: 25px 0 0 25px;
+            color: #333;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .input-container input {
+            flex: 1;
+            padding: 0.8rem;
+            border: none;
             font-size: 1rem;
             color: #333;
-            background: #fff;
+            background: #ffffff;
+            border-radius: 0 25px 25px 0;
             transition: 0.3s;
         }
 
-        .form-group input:focus {
+        .input-container input:focus {
             outline: none;
             border-color: #6A82FB;
             transform: scale(1.02);
@@ -67,7 +85,7 @@
 
         .form-group label {
             position: absolute;
-            top: -1rem;
+            top: -1.2rem;
             left: 1rem;
             font-size: 0.9rem;
             color: #6A82FB;
@@ -101,20 +119,37 @@
     <div class="container">
         <img src="{{ asset('images/mpesa.png') }}" alt="Payment Image">
         <h1>Make a Payment</h1>
-        <form action="{{ url('/payments/initiatepush') }}" method="POST">
+        <form id="payment-form" action="{{ url('/payments/initiatepush') }}" method="POST">
             @csrf
             <div class="form-group">
                 <label for="phone">Phone Number</label>
-                <input type="text" id="phone" name="phone" placeholder="Enter your phone number" required>
+                <div class="input-container">
+                    <div class="prefix">254</div>
+                    <input type="text" id="phone" name="phone" placeholder="Enter your phone number" required>
+                </div>
             </div>
             <div class="form-group">
                 <label for="amount">Amount</label>
-                <input type="number" id="amount" name="amount" placeholder="Enter the amount" required>
+                <div class="input-container">
+                    <div class="prefix">KSh</div>
+                    <input type="number" id="amount" name="amount" placeholder="Enter the amount" required>
+                </div>
             </div>
             <button type="submit" class="submit-btn">Pay Now</button>
         </form>
     </div>
 
+    <script>
+        document.getElementById('payment-form').addEventListener('submit', function(event) {
+            var phoneInput = document.getElementById('phone');
+            var phoneNumber = phoneInput.value;
+
+            // Ensure the phone number has the '254' prefix and remove leading zero if present
+            if (!phoneNumber.startsWith('254')) {
+                phoneInput.value = '254' + phoneNumber.replace(/^0/, '');
+            }
+        });
+    </script>
 </body>
 
 </html>

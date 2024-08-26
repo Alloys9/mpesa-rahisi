@@ -30,3 +30,41 @@ The next step is to publish the application configurations. Run the following co
 php artisan mpesa-rahisi:install
 
 ```
+Add the following to youe .env file
+
+```bash
+MPESA_ENVIRONMENT=
+SAFARICOM_PASSKEY=
+MPESA_BUSINESS_SHORTCODE=
+MPESA_CONSUMER_KEY=
+MPESA_CONSUMER_SECRET=
+MPESA_INITIATOR_PASSWORD=
+MPESA_INITIATOR_NAME=
+MPESA_SHORTCODE=
+
+MPESA_CALLBACK_URL="${APP_URL}/payments/stkcallback"
+
+MPESA_TEST_URLPRE="https://sandbox.safaricom.co.ke"
+
+MPESA_TOKEN_URL="${MPESA_TEST_URLPRE}/oauth/v1/generate?grant_type=client_credentials"
+
+MPESA_INITIATE_URL="${MPESA_TEST_URLPRE}/mpesa/stkpush/v1/processrequest"
+
+MPESA_STK_QUERY_URL="${MPESA_TEST_URLPRE}/mpesa/stkpushquery/v1/query"
+
+MPESA_SIMULATE_URL="${MPESA_TEST_URLPRE}/mpesa/c2b/v1/simulate"
+
+MPESA_REGISTER_URL="${MPESA_TEST_URLPRE}/mpesa/c2b/v1/registerurl"
+
+MPESA_CONFIRMATION_URL="${APP_URL}/payments/confirmation"
+
+MPESA_VALIDATION_URL="${APP_URL}/payments/validation"
+
+MPESA_B2C_TIMEOUT_URL="${APP_URL}/payments/b2ctimeout"
+MPESA_B2C_RESULT_URL="${APP_URL}/payments/b2cresult"
+
+MPESA_REVERSAL_TIMEOUT_URL="${APP_URL}/payments/reversalResult"
+MPESA_REVERSAL_RESULT_URL="${APP_URL}/payments/reversalTimeout"
+
+
+```

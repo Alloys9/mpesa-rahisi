@@ -105,11 +105,6 @@ return [
         ),
     ],
 
-    'providers' => [
-
-    Alloys9\MpesaRahisi\MpesaRahisiServiceProvider::class,
-    ],
-
 
     /*
     |--------------------------------------------------------------------------

@@ -27,6 +27,11 @@ composer require alloys9/mpesa_rahisi:dev-main@dev
 The next step is to publish the application configurations. Run the following command
 
 ```bash
+php artisan vendor:publish --provider="Alloys9\MpesaRahisi\MpesaRahisiServiceProvider"
+
+```
+
+```bash
 php artisan mpesa-rahisi:install
 
 ```

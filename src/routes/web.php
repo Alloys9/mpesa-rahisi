@@ -1,3 +1,5 @@
+use App\Http\Controllers\MpesaController;
+
 Route::controller(MpesaController::class)
 ->prefix('payments')
 ->as('payments')

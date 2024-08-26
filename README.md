@@ -30,7 +30,7 @@ The next step is to publish the application configurations. Run the following co
 php artisan mpesa-rahisi:install
 
 ```
-Add the following to youe .env file
+Add the following to your .env file
 
 ```bash
 MPESA_ENVIRONMENT=

@@ -17,6 +17,8 @@ class MpesaRahisiServiceProvider extends ServiceProvider
 
     public function boot()
     {
-        // Bootstrapping actions, if any
+        $this->commands([
+            InstallMpesaRahisiPackage::class,
+        ]);
     }
 }

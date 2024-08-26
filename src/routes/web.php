@@ -1,12 +1,3 @@
-<?php
-
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\MpesaController;
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::controller(MpesaController::class)
 ->prefix('payments')
 ->as('payments')
@@ -30,12 +21,3 @@ Route::controller(MpesaController::class)
 });
 
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-});

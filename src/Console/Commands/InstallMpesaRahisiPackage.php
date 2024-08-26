@@ -27,7 +27,7 @@ class InstallMpesaRahisiPackage extends Command
         $this->copyMigrations();
         $this->copyModels();
         $this->copyViews();
-        $this->replaceRoutes();
+        $this->appendRoutes();
         $this->replaceCsrfMiddleware();
 
         $this->info('M-Pesa Rahisi package installed successfully.');
@@ -63,10 +63,10 @@ class InstallMpesaRahisiPackage extends Command
         $this->copyDirectory(__DIR__ . '/../../resources/views', resource_path('views'));
     }
 
-    protected function replaceRoutes()
+    protected function appendRoutes()
     {
-        $this->info('Replacing route files...');
-        $this->replaceFile(base_path('routes/web.php'), __DIR__ . '/../../routes/web.php');
+        $this->info('Appending route files...');
+        $this->appendToFile(base_path('routes/web.php'), __DIR__ . '/../../routes/web.php');
     }
 
     protected function replaceCsrfMiddleware()
@@ -93,5 +93,16 @@ class InstallMpesaRahisiPackage extends Command
         }
 
         $this->files->copy($sourceFile, $targetFile);
+    }
+
+    protected function appendToFile($targetFile, $sourceFile)
+    {
+        if (!$this->files->exists($sourceFile)) {
+            $this->error("Source file $sourceFile does not exist.");
+            return;
+        }
+
+        $sourceContent = $this->files->get($sourceFile);
+        $this->files->append($targetFile, "\n" . $sourceContent);
     }
 }

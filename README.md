@@ -27,16 +27,11 @@ composer require alloys9/mpesa_rahisi:dev-main@dev
 The next step is to publish the application configurations. Run the following command
 
 ```bash
-php artisan vendor:publish --provider="Alloys9\MpesaRahisi\MpesaRahisiServiceProvider"
-
-
-```
-
-```bash
 php artisan mpesa-rahisi:install
 
 ```
-Add the following to your .env file
+
+Add the following to your .env file to save the variables
 
 ```bash
 MPESA_ENVIRONMENT=
@@ -71,6 +66,12 @@ MPESA_B2C_RESULT_URL="${APP_URL}/payments/b2cresult"
 
 MPESA_REVERSAL_TIMEOUT_URL="${APP_URL}/payments/reversalResult"
 MPESA_REVERSAL_RESULT_URL="${APP_URL}/payments/reversalTimeout"
+```
 
+Then you are done! That simple!
+if an error occurs run
+
+```bash
+php artisan vendor:publish --provider="Alloys9\MpesaRahisi\MpesaRahisiServiceProvider"
 
 ```

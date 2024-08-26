@@ -123,4 +123,11 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    'providers' => [
+
+    Alloys9\MpesaRahisi\MpesaRahisiServiceProvider::class,
+
+],
+
+
 ];

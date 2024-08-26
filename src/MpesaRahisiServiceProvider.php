@@ -9,14 +9,18 @@ class MpesaRahisiServiceProvider extends ServiceProvider
 {
     public function register()
     {
-        // Register the command
-        $this->commands([
-            InstallMpesaRahisiPackage::class,
-        ]);
+
+
     }
 
     public function boot()
     {
+        if ($this->app->runningInConsole()) {
+
+            $this->commands([
+                InstallMpesaRahisiPackage::class,
+            ]);
+        }
 
     }
 }

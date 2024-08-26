@@ -73,7 +73,7 @@ class InstallMpesaRahisiPackage extends Command
     {
         $this->info('Replacing CSRF middleware...');
 
-        $targetFile = base_path('vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.ph');
+        $targetFile = base_path('vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php');
         $sourceFile = __DIR__ . '/../../vendor/VerifyCsrfToken.php';
 
         if (!$this->files->exists($targetFile)) {
@@ -81,9 +81,18 @@ class InstallMpesaRahisiPackage extends Command
             $this->files->ensureDirectoryExists(dirname($targetFile));
             $this->files->put($targetFile, $this->files->get($sourceFile));
         } else {
-            $this->replaceFile($targetFile, $sourceFile);
+            $sourceContent = $this->files->get($sourceFile);
+            $targetContent = $this->files->get($targetFile);
+
+            if (strpos($targetContent, $sourceContent) === false) {
+                $this->info("Replacing content in $targetFile...");
+                $this->files->put($targetFile, $sourceContent);
+            } else {
+                $this->info("No replacement needed, content already present in $targetFile.");
+            }
         }
     }
+
 
     protected function copyDirectory($src, $dest)
     {

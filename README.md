@@ -20,3 +20,13 @@ You can install the package via Composer:
 
 ```bash
 composer require alloys9/mpesa_rahisi:dev-main@dev
+
+```
+
+## Configuration
+The next step is to publish the application configurations. Run the following command
+
+```bash
+php artisan mpesa-rahisi:install
+
+```

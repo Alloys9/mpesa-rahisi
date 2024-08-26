@@ -49,7 +49,6 @@ class InstallMpesaRahisiPackage extends Command
     {
         $params = [
             '--provider' => "Alloys9\MpesaRahisi\MpesaRahisiServiceProvider",
-            '--tag' => 'mpesa-config',
         ];
 
         if ($forcePublish === true) {

@@ -30,12 +30,11 @@
     "homepage": "https://github.com/Alloys9/mpesa-rahisi",
     "minimum-stability": "dev",
     "prefer-stable": true,
-    "scripts": {
-        "post-install-cmd": [
-            "php artisan mpesa-rahisi:install"
-        ],
-        "post-update-cmd": [
-            "php artisan mpesa-rahisi:install"
-        ]
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Alloys9\\MpesaRahisiServiceProvider"
+            ]
+        }
     }
 }

@@ -33,7 +33,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Alloys9\\MpesaRahisiServiceProvider"
+                "Alloys9\\MpesaRahisi\\MpesaRahisiServiceProvider"
             ]
         }
     }

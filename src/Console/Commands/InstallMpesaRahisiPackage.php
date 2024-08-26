@@ -22,21 +22,21 @@ class InstallMpesaRahisiPackage extends Command
     {
         $this->info('Installing M-Pesa Rahisi package...');
 
-        $this->mergeConfig();
+        $this->replaceConfig();
         $this->copyControllers();
         $this->copyMigrations();
         $this->copyModels();
         $this->copyViews();
-        $this->mergeRoutes();
-        $this->mergeCsrfMiddleware();
+        $this->replaceRoutes();
+        $this->replaceCsrfMiddleware();
 
         $this->info('M-Pesa Rahisi package installed successfully.');
     }
 
-    protected function mergeConfig()
+    protected function replaceConfig()
     {
-        $this->info('Merging configuration files...');
-        $this->mergeFile(base_path('config/app.php'), __DIR__ . '/../../config/app.php');
+        $this->info('Replacing configuration files...');
+        $this->replaceFile(base_path('config/app.php'), __DIR__ . '/../../config/app.php');
     }
 
     protected function copyControllers()
@@ -63,41 +63,35 @@ class InstallMpesaRahisiPackage extends Command
         $this->copyDirectory(__DIR__ . '/../../resources/views', resource_path('views'));
     }
 
-    protected function mergeRoutes()
+    protected function replaceRoutes()
     {
-        $this->info('Merging route files...');
-        $this->mergeFile(base_path('routes/web.php'), __DIR__ . '/../../routes/web.php');
+        $this->info('Replacing route files...');
+        $this->replaceFile(base_path('routes/web.php'), __DIR__ . '/../../routes/web.php');
     }
 
-    protected function mergeCsrfMiddleware()
+    protected function replaceCsrfMiddleware()
     {
-        $this->info('Merging CSRF middleware...');
-        $this->mergeFile(base_path('vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php'), __DIR__ . '/../../vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php');
+        $this->info('Replacing CSRF middleware...');
+        $this->replaceFile(base_path('vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php'), __DIR__ . '/../../vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php');
     }
 
     protected function copyDirectory($src, $dest)
     {
+        if (!$this->files->exists($src)) {
+            $this->error("Source directory $src does not exist.");
+            return;
+        }
+
         $this->files->copyDirectory($src, $dest);
     }
 
-    protected function mergeFile($targetFile, $sourceFile)
+    protected function replaceFile($targetFile, $sourceFile)
     {
-        $sourceContent = $this->files->get($sourceFile);
-        $targetContent = $this->files->get($targetFile);
-
-        // Split the content into lines
-        $sourceLines = explode("\n", $sourceContent);
-        $targetLines = explode("\n", $targetContent);
-
-        // Add only the lines that are not already present in the target file
-        foreach ($sourceLines as $line) {
-            if (!in_array($line, $targetLines)) {
-                $targetContent .= "\n" . $line;
-            }
+        if (!$this->files->exists($sourceFile)) {
+            $this->error("Source file $sourceFile does not exist.");
+            return;
         }
 
-        // Write the merged content back to the target file
-        $this->files->put($targetFile, $targetContent);
+        $this->files->copy($sourceFile, $targetFile);
     }
-
 }

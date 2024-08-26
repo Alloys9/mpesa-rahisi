@@ -1,0 +1,33 @@
+{
+    "name": "alloys9/mpesa_rahisi",
+    "type": "library",
+    "description": "A simple PHP library for integrating with Safaricom's M-Pesa API",
+    "require": {
+        "php": ">=8.0"
+    },
+    "keywords": [
+    "mpesa",
+    "laravel",
+    "laravel mpesa",
+    "laravel-mpesa",
+    "mpesa-api",
+    "mpesa integration"
+  ],
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Alloys9\\MpesaRahisi\\": "src/"
+        }
+    },
+    "authors": [
+        {
+          "name": "Alloys Amasakha",
+          "email": "eutopiatech@gmail.com",
+          "homepage": "https://www.alloysamasakha.com/",
+          "role": "Developer"
+        }
+      ],
+    "homepage": "https://github.com/Alloys9/mpesa-rahisi",
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

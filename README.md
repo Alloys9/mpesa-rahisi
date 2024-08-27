@@ -70,8 +70,12 @@ MPESA_REVERSAL_RESULT_URL="${APP_URL}/payments/reversalTimeout"
 
 Then you are done! That simple!
 if an error occurs run
-
 ```bash
 php artisan vendor:publish --provider="Alloys9\MpesaRahisi\MpesaRahisiServiceProvider"
+```
+
+Then run
+```bash
+php artisan mpesa-rahisi:install
 
 ```

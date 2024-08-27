@@ -31,13 +31,13 @@ php artisan mpesa-rahisi:install
 
 This command will:
 
-Replace the config/app.php file
-Copy controllers to app/Http/Controllers
-Copy migrations to database/migrations
-Copy models to app/Models
-Copy views to resources/views
-Append necessary routes to routes/web.php
-Replace the CSRF middleware file
+- Replace the config/app.php file
+- Copy controllers to app/Http/Controllers
+- Copy migrations to database/migrations
+- Copy models to app/Models
+- Copy views to resources/views
+- Append necessary routes to routes/web.php
+- Replace the CSRF middleware file
 
 ### Step 3: Migrate the database
 Run the following command to migrate the necessary database tables:

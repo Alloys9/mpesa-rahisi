@@ -1,13 +1,11 @@
 # M-PESA rahisi
-[![Latest Version](https://img.shields.io/github/v/release/vendor/package-name.svg?style=flat-square)](https://github.com/vendor/package-name/releases)
-[![Total Downloads](https://img.shields.io/packagist/dt/vendor/package-name.svg?style=flat-square)](https://packagist.org/packages/vendor/package-name)
-[![Build Status](https://img.shields.io/github/actions/workflow/status/vendor/package-name/tests.yml?branch=main)](https://github.com/vendor/package-name/actions)
 
-This package provides an easy integration of M-Pesa payment services with your Laravel application, allowing you to process payments, handle transaction callbacks, and manage customer billing through Safaricom's M-Pesa API.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+**Mpesa Rahisi** provides an easy integration of M-Pesa payment services with your Laravel application, allowing you to process payments, handle transaction callbacks, and manage customer billing through Safaricom's M-Pesa API.
 
 
 ## Features
-
 - Seamless M-Pesa integration with Laravel applications.
 - Easy-to-use interface for initiating STK push requests.
 - Automatically handles M-Pesa callback URLs and updates transactions.
@@ -16,14 +14,14 @@ This package provides an easy integration of M-Pesa payment services with your L
 
 ## Installation
 
-You can install the package via Composer:
+### Step 1: Install the package via Composer
 
 ```bash
 composer require alloys9/mpesa_rahisi:dev-main@dev
 
 ```
 
-## Configuration
+### Step 2: Run the installation command
 The next step is to publish the application configurations. Run the following command
 
 ```bash
@@ -41,13 +39,13 @@ Copy views to resources/views
 Append necessary routes to routes/web.php
 Replace the CSRF middleware file
 
-## Migrate the database
+### Step 3: Migrate the database
 Run the following command to migrate the necessary database tables:
 ```bash
 php artisan migrate
 ```
 
-## Add the following to your .env file to save the variables
+### Step 4: Add the following to your .env file to save the variables
 
 ```bash
 MPESA_ENVIRONMENT=
@@ -85,7 +83,7 @@ MPESA_REVERSAL_RESULT_URL="${APP_URL}/payments/reversalTimeout"
 ```
 
 Then you are done! That simple!
-if an error occurs run
+### If an error occurs run
 ```bash
 php artisan vendor:publish --provider="Alloys9\MpesaRahisi\MpesaRahisiServiceProvider"
 ```
@@ -99,7 +97,6 @@ php artisan mpesa-rahisi:install
 ## License
 This package is open-sourced software licensed under the MIT license.
 
-```vbnet
 MIT License
 
 Copyright 2024 Alloys Amasakha
@@ -110,5 +107,3 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-
-```

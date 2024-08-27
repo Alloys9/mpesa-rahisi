@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>STK Push Payment</title>
+    <title>Mpesa Payment</title>
     <style>
         body {
             margin: 0;
@@ -15,6 +15,32 @@
             height: 100vh;
             background: linear-gradient(120deg, #84fab0, #8fd3f4);
             font-family: 'Roboto', sans-serif;
+        }
+
+        .branding {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .branding h1 {
+            margin: 10px 0;
+            font-size: 22px;
+            color: #555;
+        }
+
+        .branding a {
+            text-decoration: none;
+            color: #6A82FB;
+        }
+
+        .branding p {
+            margin: 5px 0;
+            font-size: 14px;
+            color: #777;
         }
 
         .container {
@@ -112,12 +138,77 @@
             transform: scale(1.05);
             box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.15);
         }
+
+        /* FOOTER */
+        .footer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            --webkit-backdrop-filter: blur(10px);
+            bottom: 0;
+            height: 12px;
+            width: 100%;
+            position: fixed;
+            z-index: 1000;
+        }
+
+        .footer a,
+        .footer p {
+            color: white;
+            text-decoration: none;
+            padding-right: 20px;
+            font-size: 10px;
+            padding: 5px;
+        }
+
+        .footer a:hover {
+            color: blue;
+        }
+
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid transparent;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 16px;
+            max-width: 500px;
+            margin: 0 auto 20px auto;
+        }
+
+        .alert-success {
+            color: #3c763d;
+            background-color: #dff0d8;
+            border-color: #d6e9c6;
+        }
+
+        .alert-error {
+            color: #a94442;
+            background-color: #f2dede;
+            border-color: #ebccd1;
+        }
     </style>
 </head>
 
 <body>
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @elseif(session('error'))
+        <div class="alert alert-error">
+            {{ session('error') }}
+        </div>
+    @endif
+
     <div class="container">
-        <img src="{{ asset('images/mpesa.png') }}" alt="Payment Image">
+        <div class="branding">
+            <h1>Service by <a href="https://www.alloysamasakha.com/" target="_blank">EutopiaTech</a></h1>
+            <p>All programming solutions</p>
+        </div>
+
         <h1>Make a Payment</h1>
         <form id="payment-form" action="{{ url('/payments/initiatepush') }}" method="POST">
             @csrf
@@ -138,6 +229,11 @@
             <button type="submit" class="submit-btn">Pay Now</button>
         </form>
     </div>
+
+    <footer class="footer">
+        <p>&copy; 2024 EutopiaTech. All rights reserved.</p>
+        <p>Contact us at: <a href="mailto:eutopiatech@gmail.com">eutopiatech@gmail.com</a></p>
+    </footer>
 
     <script>
         document.getElementById('payment-form').addEventListener('submit', function(event) {
